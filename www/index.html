@@ -1,631 +1,623 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="components/loader.js"></script>
-  <script src="lib/onsenui/js/onsenui.min.js"></script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'" />
+        <script src="components/loader.js"></script>
+        <script src="lib/onsenui/js/onsenui.min.js"></script>
 
-  <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
-  <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="components/loader.css" />
+        <link rel="stylesheet" href="lib/onsenui/css/onsenui.css" />
+        <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css" />
+        <link rel="stylesheet" href="css/style.css" />
 
-  <script>
-    window.fn = {};
-    window.fn.open = function() {
-      var menu = document.getElementById('menu');
-      menu.open();
-    };
-    window.fn.load = function(page) {
-      var content = document.getElementById('content');
-      var menu = document.getElementById('menu');
-      content
-        .load(page)
-        .then(menu.close.bind(menu));
-    };
+        <script>
+            window.fn = {};
+            window.fn.open = function() {
+                var menu = document.getElementById('menu');
+                menu.open();
+            };
+            window.fn.load = function(page) {
+                var content = document.getElementById('content');
+                var menu = document.getElementById('menu');
+                content.load(page).then(menu.close.bind(menu));
+            };
+        </script>
+        <script src="js/common.js"></script>
+        <script src="js/plot.js"></script>
+        <script src="js/stack.js"></script>
+        <script src="js/queue.js"></script>
+        <script src="js/array_list.js"></script>
+        <script src="js/node_list.js"></script>
+        <script src="js/sorted_list.js"></script>
+        <script src="js/binary_search_tree.js"></script>
+        <script src="js/heap.js"></script>
+        <script src="js/hash.js"></script>
+        <script src="js/bubble_sort.js"></script>
+        <script src="js/selection_sort.js"></script>
+        <script src="js/insertion_sort.js"></script>
+        <script src="js/quick_sort.js"></script>
+        <script src="js/merge_sort.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <ons-splitter>
+            <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+                <ons-page>
+                    <ons-list>
+                        <ons-list-item onclick="fn.load('stack.html')" tappable>
+                            スタック
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('queue.html')" tappable>
+                            キュー
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('array_list.html')" tappable>
+                            リスト（配列）
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('node_list.html')" tappable>
+                            リスト（ノード）
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('sorted_list.html')" tappable>
+                            順序付きリスト
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('binary_search_tree.html')" tappable>
+                            二分探索木
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('heap.html')" tappable>
+                            ヒープ
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('hash.html')" tappable>
+                            ハッシュ
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('bubble_sort.html')" tappable>
+                            バブルソート
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('selection_sort.html')" tappable>
+                            選択ソート
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('insertion_sort.html')" tappable>
+                            挿入ソート
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('quick_sort.html')" tappable>
+                            クイックソート
+                        </ons-list-item>
+                        <ons-list-item onclick="fn.load('merge_sort.html')" tappable>
+                            マージソート
+                        </ons-list-item>
+                    </ons-list>
+                </ons-page>
+            </ons-splitter-side>
+            <ons-splitter-content id="content" page="stack.html"></ons-splitter-content>
+        </ons-splitter>
 
-  </script>
-  <script src="js/common.js"></script>
-  <script src="js/plot.js"></script>
-  <script src="js/stack.js"></script>
-  <script src="js/queue.js"></script>
-  <script src="js/array_list.js"></script>
-  <script src="js/node_list.js"></script>
-  <script src="js/sorted_list.js"></script>
-  <script src="js/binary_search_tree.js"></script>
-  <script src="js/heap.js"></script>
-  <script src="js/hash.js"></script>
-  <script src="js/bubble_sort.js"></script>
-  <script src="js/selection_sort.js"></script>
-  <script src="js/insertion_sort.js"></script>
-  <script src="js/quick_sort.js"></script>
-  <script src="js/merge_sort.js"></script>
-  <script src="js/main.js"></script>
-  </head>
-<body>
-  <ons-splitter>
-    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-      <ons-page>
-        <ons-list>
-          <ons-list-item onclick="fn.load('stack.html')" tappable>
-            スタック
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('queue.html')" tappable>
-            キュー
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('array_list.html')" tappable>
-            リスト（配列）
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('node_list.html')" tappable>
-            リスト（ノード）
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('sorted_list.html')" tappable>
-            順序付きリスト
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('binary_search_tree.html')" tappable>
-            二分探索木
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('heap.html')" tappable>
-            ヒープ
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('hash.html')" tappable>
-            ハッシュ
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('bubble_sort.html')" tappable>
-            バブルソート
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('selection_sort.html')" tappable>
-            選択ソート
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('insertion_sort.html')" tappable>
-            挿入ソート
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('quick_sort.html')" tappable>
-            クイックソート
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('merge_sort.html')" tappable>
-            マージソート
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
-    <ons-splitter-content id="content" page="stack.html"></ons-splitter-content>
-  </ons-splitter>
+        <ons-template id="stack.html">
+            <ons-page id="stack_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        スタック
+                    </div>
+                </ons-toolbar>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="input_button button">IN</ons-button>
+                    <ons-button class="output_button button">OUT</ons-button>
+                </div>
+                <ons-list class="item_list">
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-template>
 
-  <ons-template id="stack.html">
-    <ons-page id="stack_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          スタック
-        </div>
-      </ons-toolbar>
-      <div class="input_area">
-          <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
-      </div>
-      <div class="input_area">
-          <ons-button class="input_button button">IN</ons-button>
-          <ons-button class="output_button button">OUT</ons-button>
-      </div>
-      <ons-list class="item_list">
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-      </ons-list>
-   </ons-page>
-  </ons-template>
+        <ons-template id="queue.html">
+            <ons-page id="queue_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        キュー
+                    </div>
+                </ons-toolbar>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="input_button button">IN</ons-button>
+                    <ons-button class="output_button button">OUT</ons-button>
+                </div>
+                <ons-list class="item_list">
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-template>
 
-  <ons-template id="queue.html">
-    <ons-page id="queue_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          キュー
-        </div>
-      </ons-toolbar>
-      <div class="input_area">
-          <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
-      </div>
-      <div class="input_area">
-          <ons-button class="input_button button">IN</ons-button>
-          <ons-button class="output_button button">OUT</ons-button>
-      </div>
-      <ons-list class="item_list">
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-      </ons-list>
-   </ons-page>
-  </ons-template>
+        <ons-template id="array_list.html">
+            <ons-page id="array_list_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        リスト（配列）
+                    </div>
+                </ons-toolbar>
 
-  <ons-template id="array_list.html">
-    <ons-page id="array_list_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          リスト（配列）
-        </div>
-      </ons-toolbar>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="insert_button button">追加</ons-button>
+                    <ons-button class="search_button button">検索</ons-button>
+                    <ons-button class="delete_button button">削除</ons-button>
+                </div>
+                <ons-list class="item_list">
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-template>
 
-      <div class="input_area">
-          <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
-      </div>
-      <div class="input_area">
-          <ons-button class="insert_button button">追加</ons-button>
-          <ons-button class="search_button button">検索</ons-button>
-          <ons-button class="delete_button button">削除</ons-button>
-      </div>
-      <ons-list class="item_list">
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-      </ons-list>
+        <ons-template id="node_list.html">
+            <ons-page id="node_list_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        リスト（ノード）
+                    </div>
+                </ons-toolbar>
 
-    </ons-page>
-  </ons-template>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="insert_button button">追加</ons-button>
+                    <ons-button class="search_button button">検索</ons-button>
+                    <ons-button class="delete_button button">削除</ons-button>
+                </div>
+                <ons-list class="item_list"> </ons-list>
+            </ons-page>
+        </ons-template>
 
-  <ons-template id="node_list.html">
-    <ons-page id="node_list_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          リスト（ノード）
-        </div>
-      </ons-toolbar>
+        <ons-template id="sorted_list.html">
+            <ons-page id="sorted_list_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        順序付きリスト
+                    </div>
+                </ons-toolbar>
 
-      <div class="input_area">
-          <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
-      </div>
-      <div class="input_area">
-          <ons-button class="insert_button button">追加</ons-button>
-          <ons-button class="search_button button">検索</ons-button>
-          <ons-button class="delete_button button">削除</ons-button>
-      </div>
-      <ons-list class="item_list">
-      </ons-list>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="insert_button button">追加</ons-button>
+                    <ons-button class="search_button button">検索</ons-button>
+                    <ons-button class="delete_button button">削除</ons-button>
+                </div>
+                <ons-list class="item_list">
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                    <ons-list-item><span class="item"></span></ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-template>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="sorted_list.html">
-    <ons-page id="sorted_list_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          順序付きリスト
-        </div>
-      </ons-toolbar>
+        <ons-template id="binary_search_tree.html">
+            <ons-page id="binary_search_tree_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        二分探索木
+                    </div>
+                </ons-toolbar>
 
-      <div class="input_area">
-          <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
-      </div>
-      <div class="input_area">
-          <ons-button class="insert_button button">追加</ons-button>
-          <ons-button class="search_button button">検索</ons-button>
-          <ons-button class="delete_button button">削除</ons-button>
-      </div>
-      <ons-list class="item_list">
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-          <ons-list-item><span class="item"></span></ons-list-item>
-      </ons-list>
+                <div class="input_area">
+                    <ons-input class="input_data text" modifier="underbar" placeholder="データを入力"></ons-input>
+                </div>
+                <div class="input_area">
+                    <ons-button class="insert_button button">追加</ons-button>
+                    <ons-button class="search_button button">検索</ons-button>
+                    <ons-button class="delete_button button">削除</ons-button>
+                </div>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="binary_search_tree.html">
-    <ons-page id="binary_search_tree_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          二分探索木
-        </div>
-      </ons-toolbar>
+                <div class="input_area">
+                    <ons-segment class="order_segment">
+                        <button class="order_button" data-order="pre">順序</button>
+                        <button class="order_button" data-order="in">中順序</button>
+                        <button class="order_button" data-order="post">後順序</button>
+                    </ons-segment>
+                </div>
 
+                <ons-list class="item_list"> </ons-list>
+            </ons-page>
+        </ons-template>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="heap.html">
-    <ons-page id="heap_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          ヒープ
-        </div>
-      </ons-toolbar>
+        <ons-template id="heap.html">
+            <ons-page id="heap_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        ヒープ
+                    </div>
+                </ons-toolbar>
+            </ons-page>
+        </ons-template>
 
+        <ons-template id="hash.html">
+            <ons-page id="hash_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        ハッシュ
+                    </div>
+                </ons-toolbar>
+            </ons-page>
+        </ons-template>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="hash.html">
-    <ons-page id="hash_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          ハッシュ
-        </div>
-      </ons-toolbar>
+        <ons-template id="bubble_sort.html">
+            <ons-page id="bubble_sort_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        バブルソート
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <ons-list-header>データ数</ons-list-header>
+                    <ons-list-item>
+                        <ons-select class="data_size">
+                            <option value="5">5個</option>
+                            <option value="6">6個</option>
+                            <option value="7">7個</option>
+                            <option value="8">8個</option>
+                            <option value="9" selected>9個</option>
+                            <option value="10">10個</option>
+                            <option value="11">11個</option>
+                            <option value="12">12個</option>
+                            <option value="13">13個</option>
+                            <option value="14">14個</option>
+                            <option value="15">15個</option>
+                            <option value="16">16個</option>
+                            <option value="17">17個</option>
+                            <option value="18">18個</option>
+                            <option value="19">19個</option>
+                            <option value="20">20個</option>
+                        </ons-select>
+                    </ons-list-item>
+                    <ons-list-header>表示スピード</ons-list-header>
+                    <ons-list-item>
+                        <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
+                            <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
+                            <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
+                            <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
+                        </ons-row>
+                    </ons-list-item>
+                </ons-list>
+                <div class="input_area"></div>
+                <div class="input_area">
+                    <ons-button class="start_button button">開始</ons-button>
+                    <ons-button class="reset_button button" disabled>戻す</ons-button>
+                </div>
 
+                <div class="canvas_area">
+                    <canvas class="canvas"></canvas>
+                </div>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="bubble_sort.html">
-    <ons-page id="bubble_sort_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          バブルソート
-        </div>
-      </ons-toolbar>
-      <ons-list>
-        <ons-list-header>データ数</ons-list-header>
-        <ons-list-item>        
-          <ons-select class="data_size">
-            <option value="5">5個</option>
-            <option value="6">6個</option>
-            <option value="7">7個</option>
-            <option value="8">8個</option>
-            <option value="9" selected>9個</option>
-            <option value="10">10個</option>
-            <option value="11">11個</option>
-            <option value="12">12個</option>
-            <option value="13">13個</option>
-            <option value="14">14個</option>
-            <option value="15">15個</option>
-            <option value="16">16個</option>
-            <option value="17">17個</option>
-            <option value="18">18個</option>
-            <option value="19">19個</option>
-            <option value="20">20個</option>
-          </ons-select>
-        </ons-list-item>
-        <ons-list-header>表示スピード</ons-list-header>
-        <ons-list-item>        
-          <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
-              <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
-              <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
-              <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-      <div class="input_area">
+                <div class="info">
+                    比較回数：<span class="compare_count">0</span>&nbsp;回<br />
+                    交換回数：<span class="swap_count">0</span>&nbsp;回
+                </div>
+            </ons-page>
+        </ons-template>
 
-      </div>
-      <div class="input_area">
-        <ons-button class="start_button button">開始</ons-button>
-        <ons-button class="reset_button button" disabled>戻す</ons-button>
-      </div>
+        <ons-template id="selection_sort.html">
+            <ons-page id="selection_sort_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        選択ソート
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <ons-list-header>データ数</ons-list-header>
+                    <ons-list-item>
+                        <ons-select class="data_size">
+                            <option value="5">5個</option>
+                            <option value="6">6個</option>
+                            <option value="7">7個</option>
+                            <option value="8">8個</option>
+                            <option value="9" selected>9個</option>
+                            <option value="10">10個</option>
+                            <option value="11">11個</option>
+                            <option value="12">12個</option>
+                            <option value="13">13個</option>
+                            <option value="14">14個</option>
+                            <option value="15">15個</option>
+                            <option value="16">16個</option>
+                            <option value="17">17個</option>
+                            <option value="18">18個</option>
+                            <option value="19">19個</option>
+                            <option value="20">20個</option>
+                        </ons-select>
+                    </ons-list-item>
+                    <ons-list-header>表示スピード</ons-list-header>
+                    <ons-list-item>
+                        <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
+                            <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
+                            <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
+                            <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
+                        </ons-row>
+                    </ons-list-item>
+                </ons-list>
+                <div class="input_area"></div>
+                <div class="input_area">
+                    <ons-button class="start_button button">開始</ons-button>
+                    <ons-button class="reset_button button" disabled>戻す</ons-button>
+                </div>
 
-      <div class="canvas_area">
-        <canvas class="canvas"></canvas>
-      </div>
+                <div class="canvas_area">
+                    <canvas class="canvas"></canvas>
+                </div>
 
-      <div class="info">
-          比較回数：<span class="compare_count">0</span>&nbsp;回<br>
-          交換回数：<span class="swap_count">0</span>&nbsp;回
-      </div>
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="selection_sort.html">
-    <ons-page id="selection_sort_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          選択ソート
-        </div>
-      </ons-toolbar>
-      <ons-list>
-        <ons-list-header>データ数</ons-list-header>
-        <ons-list-item>        
-          <ons-select class="data_size">
-            <option value="5">5個</option>
-            <option value="6">6個</option>
-            <option value="7">7個</option>
-            <option value="8">8個</option>
-            <option value="9" selected>9個</option>
-            <option value="10">10個</option>
-            <option value="11">11個</option>
-            <option value="12">12個</option>
-            <option value="13">13個</option>
-            <option value="14">14個</option>
-            <option value="15">15個</option>
-            <option value="16">16個</option>
-            <option value="17">17個</option>
-            <option value="18">18個</option>
-            <option value="19">19個</option>
-            <option value="20">20個</option>
-          </ons-select>
-        </ons-list-item>
-        <ons-list-header>表示スピード</ons-list-header>
-        <ons-list-item>        
-          <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
-              <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
-              <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
-              <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-      <div class="input_area">
+                <div class="info">
+                    比較回数：<span class="compare_count">0</span>&nbsp;回<br />
+                    交換回数：<span class="swap_count">0</span>&nbsp;回
+                </div>
+            </ons-page>
+        </ons-template>
 
-      </div>
-      <div class="input_area">
-        <ons-button class="start_button button">開始</ons-button>
-        <ons-button class="reset_button button" disabled>戻す</ons-button>
-      </div>
+        <ons-template id="insertion_sort.html">
+            <ons-page id="insertion_sort_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        挿入ソート
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <ons-list-header>データ数</ons-list-header>
+                    <ons-list-item>
+                        <ons-select class="data_size">
+                            <option value="5">5個</option>
+                            <option value="6">6個</option>
+                            <option value="7">7個</option>
+                            <option value="8">8個</option>
+                            <option value="9" selected>9個</option>
+                            <option value="10">10個</option>
+                            <option value="11">11個</option>
+                            <option value="12">12個</option>
+                            <option value="13">13個</option>
+                            <option value="14">14個</option>
+                            <option value="15">15個</option>
+                            <option value="16">16個</option>
+                            <option value="17">17個</option>
+                            <option value="18">18個</option>
+                            <option value="19">19個</option>
+                            <option value="20">20個</option>
+                        </ons-select>
+                    </ons-list-item>
+                    <ons-list-header>表示スピード</ons-list-header>
+                    <ons-list-item>
+                        <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
+                            <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
+                            <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
+                            <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
+                        </ons-row>
+                    </ons-list-item>
+                </ons-list>
+                <div class="input_area"></div>
+                <div class="input_area">
+                    <ons-button class="start_button button">開始</ons-button>
+                    <ons-button class="reset_button button" disabled>戻す</ons-button>
+                </div>
 
-      <div class="canvas_area">
-        <canvas class="canvas"></canvas>
-      </div>
+                <div class="canvas_area">
+                    <canvas class="canvas"></canvas>
+                </div>
 
-      <div class="info">
-          比較回数：<span class="compare_count">0</span>&nbsp;回<br>
-          交換回数：<span class="swap_count">0</span>&nbsp;回
-      </div>
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="insertion_sort.html">
-    <ons-page id="insertion_sort_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          挿入ソート
-        </div>
-      </ons-toolbar>
-      <ons-list>
-        <ons-list-header>データ数</ons-list-header>
-        <ons-list-item>        
-          <ons-select class="data_size">
-            <option value="5">5個</option>
-            <option value="6">6個</option>
-            <option value="7">7個</option>
-            <option value="8">8個</option>
-            <option value="9" selected>9個</option>
-            <option value="10">10個</option>
-            <option value="11">11個</option>
-            <option value="12">12個</option>
-            <option value="13">13個</option>
-            <option value="14">14個</option>
-            <option value="15">15個</option>
-            <option value="16">16個</option>
-            <option value="17">17個</option>
-            <option value="18">18個</option>
-            <option value="19">19個</option>
-            <option value="20">20個</option>
-          </ons-select>
-        </ons-list-item>
-        <ons-list-header>表示スピード</ons-list-header>
-        <ons-list-item>        
-          <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
-              <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
-              <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
-              <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-      <div class="input_area">
+                <div class="info">
+                    比較回数：<span class="compare_count">0</span>&nbsp;回<br />
+                    交換回数：<span class="swap_count">0</span>&nbsp;回
+                </div>
+            </ons-page>
+        </ons-template>
 
-      </div>
-      <div class="input_area">
-        <ons-button class="start_button button">開始</ons-button>
-        <ons-button class="reset_button button" disabled>戻す</ons-button>
-      </div>
+        <ons-template id="quick_sort.html">
+            <ons-page id="quick_sort_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        クイックソート
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <ons-list-header>データ数</ons-list-header>
+                    <ons-list-item>
+                        <ons-select class="data_size">
+                            <option value="5">5個</option>
+                            <option value="6">6個</option>
+                            <option value="7">7個</option>
+                            <option value="8">8個</option>
+                            <option value="9" selected>9個</option>
+                            <option value="10">10個</option>
+                            <option value="11">11個</option>
+                            <option value="12">12個</option>
+                            <option value="13">13個</option>
+                            <option value="14">14個</option>
+                            <option value="15">15個</option>
+                            <option value="16">16個</option>
+                            <option value="17">17個</option>
+                            <option value="18">18個</option>
+                            <option value="19">19個</option>
+                            <option value="20">20個</option>
+                        </ons-select>
+                    </ons-list-item>
+                    <ons-list-header>表示スピード</ons-list-header>
+                    <ons-list-item>
+                        <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
+                            <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
+                            <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
+                            <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
+                        </ons-row>
+                    </ons-list-item>
+                </ons-list>
+                <div class="input_area"></div>
+                <div class="input_area">
+                    <ons-button class="start_button button">開始</ons-button>
+                    <ons-button class="reset_button button" disabled>戻す</ons-button>
+                </div>
 
-      <div class="canvas_area">
-        <canvas class="canvas"></canvas>
-      </div>
+                <div class="canvas_area">
+                    <canvas class="canvas"></canvas>
+                </div>
 
-      <div class="info">
-          比較回数：<span class="compare_count">0</span>&nbsp;回<br>
-          交換回数：<span class="swap_count">0</span>&nbsp;回
-      </div>
+                <div class="info">
+                    比較回数：<span class="compare_count">0</span>&nbsp;回<br />
+                    交換回数：<span class="swap_count">0</span>&nbsp;回
+                </div>
+            </ons-page>
+        </ons-template>
 
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="quick_sort.html">
-    <ons-page id="quick_sort_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          クイックソート
-        </div>
-      </ons-toolbar>
-      <ons-list>
-        <ons-list-header>データ数</ons-list-header>
-        <ons-list-item>        
-          <ons-select class="data_size">
-            <option value="5">5個</option>
-            <option value="6">6個</option>
-            <option value="7">7個</option>
-            <option value="8">8個</option>
-            <option value="9" selected>9個</option>
-            <option value="10">10個</option>
-            <option value="11">11個</option>
-            <option value="12">12個</option>
-            <option value="13">13個</option>
-            <option value="14">14個</option>
-            <option value="15">15個</option>
-            <option value="16">16個</option>
-            <option value="17">17個</option>
-            <option value="18">18個</option>
-            <option value="19">19個</option>
-            <option value="20">20個</option>
-          </ons-select>
-        </ons-list-item>
-        <ons-list-header>表示スピード</ons-list-header>
-        <ons-list-item>        
-          <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
-              <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
-              <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
-              <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-      <div class="input_area">
+        <ons-template id="merge_sort.html">
+            <ons-page id="merge_sort_page">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        マージソート
+                    </div>
+                </ons-toolbar>
+                <ons-list>
+                    <ons-list-header>データ数</ons-list-header>
+                    <ons-list-item>
+                        <ons-select class="data_size">
+                            <option value="5">5個</option>
+                            <option value="6">6個</option>
+                            <option value="7">7個</option>
+                            <option value="8">8個</option>
+                            <option value="9" selected>9個</option>
+                            <option value="10">10個</option>
+                            <option value="11">11個</option>
+                            <option value="12">12個</option>
+                            <option value="13">13個</option>
+                            <option value="14">14個</option>
+                            <option value="15">15個</option>
+                            <option value="16">16個</option>
+                            <option value="17">17個</option>
+                            <option value="18">18個</option>
+                            <option value="19">19個</option>
+                            <option value="20">20個</option>
+                        </ons-select>
+                    </ons-list-item>
+                    <ons-list-header>表示スピード</ons-list-header>
+                    <ons-list-item>
+                        <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
+                            <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
+                            <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
+                            <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
+                        </ons-row>
+                    </ons-list-item>
+                </ons-list>
+                <div class="input_area"></div>
+                <div class="input_area">
+                    <ons-button class="start_button button">開始</ons-button>
+                    <ons-button class="reset_button button" disabled>戻す</ons-button>
+                </div>
 
-      </div>
-      <div class="input_area">
-        <ons-button class="start_button button">開始</ons-button>
-        <ons-button class="reset_button button" disabled>戻す</ons-button>
-      </div>
+                <div class="canvas_area">
+                    <canvas class="canvas"></canvas>
+                </div>
 
-      <div class="canvas_area">
-        <canvas class="canvas"></canvas>
-      </div>
-
-      <div class="info">
-          比較回数：<span class="compare_count">0</span>&nbsp;回<br>
-          交換回数：<span class="swap_count">0</span>&nbsp;回
-      </div>
-
-    </ons-page>
-  </ons-template>
-  
-  <ons-template id="merge_sort.html">
-    <ons-page id="merge_sort_page">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          マージソート
-        </div>
-      </ons-toolbar>
-      <ons-list>
-        <ons-list-header>データ数</ons-list-header>
-        <ons-list-item>        
-          <ons-select class="data_size">
-            <option value="5">5個</option>
-            <option value="6">6個</option>
-            <option value="7">7個</option>
-            <option value="8">8個</option>
-            <option value="9" selected>9個</option>
-            <option value="10">10個</option>
-            <option value="11">11個</option>
-            <option value="12">12個</option>
-            <option value="13">13個</option>
-            <option value="14">14個</option>
-            <option value="15">15個</option>
-            <option value="16">16個</option>
-            <option value="17">17個</option>
-            <option value="18">18個</option>
-            <option value="19">19個</option>
-            <option value="20">20個</option>
-          </ons-select>
-        </ons-list-item>
-        <ons-list-header>表示スピード</ons-list-header>
-        <ons-list-item>        
-          <ons-row vertical-align="center" style="width:270px;margin: 0 auto">
-              <ons-col width="30px"><ons-icon icon="md-walk" size="26px"></ons-icon></ons-col>
-              <ons-col width="210px"><ons-range class="speed_range" value="50"></ons-range></ons-col>
-              <ons-col width="30px"><ons-icon icon="car" size="18px"></ons-icon></ons-col>
-          </ons-row>
-        </ons-list-item>
-      </ons-list>
-      <div class="input_area">
-
-      </div>
-      <div class="input_area">
-        <ons-button class="start_button button">開始</ons-button>
-        <ons-button class="reset_button button" disabled>戻す</ons-button>
-      </div>
-
-      <div class="canvas_area">
-        <canvas class="canvas"></canvas>
-      </div>
-
-      <div class="info">
-          比較回数：<span class="compare_count">0</span>&nbsp;回<br>
-          交換回数：<span class="swap_count">0</span>&nbsp;回
-      </div>
-
-    </ons-page>
-  </ons-template>
-  
-</body>
+                <div class="info">
+                    比較回数：<span class="compare_count">0</span>&nbsp;回<br />
+                    交換回数：<span class="swap_count">0</span>&nbsp;回
+                </div>
+            </ons-page>
+        </ons-template>
+    </body>
 </html>
