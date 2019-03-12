@@ -5,82 +5,122 @@ const Quick_Sort = {
         let compare_count = 0;
         let swap_count = 0;
 
-        const sortFunc = (start, end) => {
-            const x = dataset[Math.floor((start + end) / 2)].data;
-            let i = start;
-            let j = end;
+        const quickSort = function (data, l, r) {
+            console.log(`l:${l}, r:${r}, pivot:${data[r].data}`)
 
-            while (true) {
-                while (dataset[i].data < x) {
-                    i++;
-                    compare_count++;
+            if (r > l) {
+                const v = data[r].data
+                let i = l
+                let j = r-1
+
+                while(true) {
+                    while(data[i].data < v) {
+                        i += 1
+
+                        // 比較回数を更新
+                        compare_count += 1;
+                    }
+                    while(data[j].data > v) {
+                        j -= 1
+
+                        // 比較回数を更新
+                        compare_count += 1;
+                    }
+
+                    if (i >= j) break
+
+                    const tmp = data[i]
+                    data[i] = data[j]
+                    data[j]= tmp
+
+                    console.log(`swap: ${i}, ${j}`)
+
+                    // 交換回数を更新
+                    swap_count += 1;
                 }
 
-                while (x < dataset[j].data) {
-                    j--;
-                    compare_count++;
-                }
+                const tmp = data[i]
+                data[i] = data[r]
+                data[r] = tmp
 
-                if (i >= j) break;
+                console.log(`${i}, ${j}, swap: ${i}, ${r}`)
 
-                const n = dataset[i];
-                dataset[i] = dataset[j];
-                dataset[j] = n;
+                // 交換回数を更新
+                swap_count += 1;
 
-                swap_count++;
-                i++;
-                j--;
+                quickSort(data, l, i - 1)
+                quickSort(data, i + 1, r)
             }
+        }
 
-            if (start < i - 1) sortFunc(start, i - 1);
-            if (j + 1 < end) sortFunc(j + 1, end);
-        };
-
-        sortFunc(0, dataset.length - 1);
+        quickSort(dataset, 0, dataset.length - 1);
 
         return { dataset, compare_count, swap_count };
-    },
+    }
     */
     /* スピード調整機能ありのソースコード */
     sort: function(dataset, plot, speed) {
         let compare_count = 0;
         let swap_count = 0;
 
-        const sortFunc = (start, end) => {
-            const x = dataset[Math.floor((start + end) / 2)].data;
-            let i = start;
-            let j = end;
+        const quickSort = function(data, l, r) {
+            console.log(`l:${l}, r:${r}, pivot:${data[r].data}`);
 
-            while (true) {
-                while (dataset[i].data < x) {
-                    i++;
+            if (r > l) {
+                const v = data[r].data;
+                let i = l;
+                let j = r - 1;
 
-                    // 比較回数を更新
-                    compare_count++;
-                    const plot_compare = compare_count;
+                while (true) {
+                    while (data[i].data < v) {
+                        i += 1;
+
+                        // 比較回数を更新
+                        compare_count++;
+                        const plot_compare = compare_count;
+                        setTimeout(function() {
+                            plot.compare_count_update(plot_compare);
+                        }, speed * swap_count * 10 + compare_count * 10);
+                    }
+                    while (data[j].data > v) {
+                        j -= 1;
+
+                        // 比較回数を更新
+                        compare_count++;
+                        const plot_compare = compare_count;
+                        setTimeout(function() {
+                            plot.compare_count_update(plot_compare);
+                        }, speed * swap_count * 10 + compare_count * 10);
+                    }
+
+                    if (i >= j) break;
+
+                    const tmp = data[i];
+                    data[i] = data[j];
+                    data[j] = tmp;
+
+                    console.log(`swap: ${i}, ${j}`);
+
+                    // 交換回数を更新
+                    swap_count++;
+                    const plot_swap = swap_count;
                     setTimeout(function() {
-                        plot.compare_count_update(plot_compare);
-                    }, speed * swap_count * 10 + compare_count * 10);
+                        plot.swap_count_update(plot_swap);
+                    }, speed * swap_count * 10);
+
+                    // チャートを更新
+                    const plot_dataset = dataset.slice();
+                    setTimeout(function() {
+                        plot.update(plot_dataset);
+                    }, speed * swap_count * 10);
                 }
 
-                while (x < dataset[j].data) {
-                    j--;
+                const tmp = data[i];
+                data[i] = data[r];
+                data[r] = tmp;
 
-                    // 比較回数を更新
-                    compare_count++;
-                    const plot_compare = compare_count;
-                    setTimeout(function() {
-                        plot.compare_count_update(plot_compare);
-                    }, speed * swap_count * 10 + compare_count * 10);
-                }
+                console.log(`${i}, ${j}, swap: ${i}, ${r}`);
 
-                if (i >= j) break;
-
-                const n = dataset[i];
-                dataset[i] = dataset[j];
-                dataset[j] = n;
-
-                swap_count++;
                 // 交換回数を更新
                 const plot_swap = swap_count;
                 setTimeout(function() {
@@ -93,14 +133,11 @@ const Quick_Sort = {
                     plot.update(plot_dataset);
                 }, speed * swap_count * 10);
 
-                i++;
-                j--;
+                quickSort(data, l, i - 1);
+                quickSort(data, i + 1, r);
             }
-
-            if (start < i - 1) sortFunc(start, i - 1);
-            if (j + 1 < end) sortFunc(j + 1, end);
         };
 
-        sortFunc(0, dataset.length - 1);
+        quickSort(dataset, 0, dataset.length - 1);
     },
 };

@@ -1,8 +1,13 @@
 const Heap = {
-    notfound: Number.MIN_VALUE,
+    notfound: Number.MIN_SAFE_INTEGER,
     maxsize: STORE_MAX_SIZE,
-    store: new Array(this.maxsize + 1),
+    store: new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v)),
     size: 0,
+    reset() {
+        console.log(this.store);
+        this.store = new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v));
+        this.size = 0;
+    },
     upheap(index) {
         const value = this.store[index];
 
@@ -33,7 +38,7 @@ const Heap = {
         const ret = this.store[index];
 
         while (index <= Math.floor(this.size / 2)) {
-            const child = 2 * index;
+            let child = 2 * index;
 
             if (child < this.size) {
                 if (this.store[child] < this.store[child + 1]) {
@@ -53,7 +58,7 @@ const Heap = {
     remove() {
         if (this.size > 0) {
             const ret = this.store[1];
-            this.store[1] = this.store[size];
+            this.store[1] = this.store[this.size];
 
             this.size--;
 

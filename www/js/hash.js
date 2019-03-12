@@ -1,6 +1,9 @@
 const Hash = {
     maxsize: 11,
-    store: new Array(STORE_MAX_SIZE).fill(''),
+    store: new Array(this.maxsize).fill(''),
+    reset() {
+        this.store = new Array(this.maxsize).fill('');
+    },
     hashFunc(str) {
         let h = str.charCodeAt(0) % this.maxsize;
 
@@ -19,8 +22,8 @@ const Hash = {
         console.log(`Hash Last: ${index}`);
 
         while (this.store[index] !== '') {
-            console.log(`store[${index}] ${store[index]}`);
-            index = (index + skip) % maxsize;
+            console.log(`store[${index}] ${this.store[index]}`);
+            index = (index + skip) % this.maxsize;
         }
 
         if (this.store[index] === '' || index !== hashFunc(str)) {

@@ -268,7 +268,84 @@ document.addEventListener('init', function(event) {
         Binary_Search_Tree.init();
         show();
     } else if (page.id === 'heap_page') {
+        const show = function() {
+            const store = Heap.store;
+
+            console.log(store);
+            page.querySelectorAll('.item_list .item').forEach(function(item, index) {
+                item.textContent = index + '：' + store[index];
+            });
+
+            page.querySelector('.size_label').innerText = `SIZE: ${Heap.size}`;
+        };
+
+        page.querySelector('.input_button').addEventListener('click', function() {
+            const input_data = page.querySelector('.input_data');
+
+            if (!input_data.value) return;
+
+            const value = Number(input_data.value);
+
+            if (Number.isSafeInteger(value) && Heap.insert(value)) {
+                show();
+            } else {
+                ons.notification.alert('データを保存出来ませんでした');
+            }
+
+            input_data.value = '';
+        });
+
+        page.querySelector('.output_button').addEventListener('click', function() {
+            let value = Heap.remove();
+
+            if (value === Heap.notfound) {
+                ons.notification.alert('データがありません');
+                value = '';
+            }
+
+            page.querySelector('.input_data').value = value;
+            show();
+        });
+
+        // 初期化処理
+        Heap.reset();
+
+        show();
     } else if (page.id === 'hash_page') {
+        const show = function() {
+            const store = Hash.store;
+
+            page.querySelectorAll('.item_list .item').forEach(function(item, index) {
+                item.textContent = index + '：' + store[index];
+            });
+        };
+
+        page.querySelector('.input_button').addEventListener('click', function() {
+            const input_data = page.querySelector('.input_data');
+            const input_skip = page.querySelector('.input_skip');
+
+            if (!input_data.value) return;
+
+            const value = input_data.value;
+            let skip = Number(input_skip.value);
+
+            if (!Number.isSafeInteger(skip)) skip = 1;
+
+            if (Hash.store.some(v => v === '') && !Hash.store.find(v => v === value) && Hash.insert(value, skip)) {
+                ons.notification.alert(`"${value}"を保存した`);
+                page.querySelector('.hash_value').innerText = Hash.hashFunc(value);
+                show();
+            } else {
+                ons.notification.alert('データを保存出来ませんでした');
+            }
+
+            input_data.value = '';
+        });
+
+        // 初期化処理
+        Hash.reset();
+
+        show();
     } else if (page.id.match(/^.+_sort_page$/)) {
         const sort_obj = {
             bubble_sort_page: Bubble_Sort,
