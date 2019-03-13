@@ -1,9 +1,6 @@
 const Hash = {
     maxsize: 11,
     store: new Array(this.maxsize).fill(''),
-    reset() {
-        this.store = new Array(this.maxsize).fill('');
-    },
     hashFunc(str) {
         let h = str.charCodeAt(0) % this.maxsize;
 

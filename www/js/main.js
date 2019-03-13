@@ -1,6 +1,11 @@
 document.addEventListener('init', function(event) {
     const page = event.target;
+
     if (page.id === 'stack_page') {
+        const reset = function() {
+            Stack.top = 0;
+            Stack.store = new Array(STORE_MAX_SIZE).fill('');
+        };
         const show = function() {
             const store = Stack.store;
             page.querySelectorAll('.item_list .item').forEach(function(item, index) {
@@ -19,8 +24,14 @@ document.addEventListener('init', function(event) {
             Stack.pop();
             show();
         });
+        reset();
         show();
     } else if (page.id === 'queue_page') {
+        const reset = function() {
+            Queue.front = 0;
+            Queue.rear = 0;
+            Queue.store = new Array(STORE_MAX_SIZE).fill('');
+        };
         const show = function() {
             const store = Queue.store;
             const start = Queue.front;
@@ -53,14 +64,21 @@ document.addEventListener('init', function(event) {
             Queue.poll();
             show();
         });
+        reset();
         show();
     } else if (page.id === 'array_list_page') {
+        const reset = function() {
+            Array_List.top = 0;
+            Array_List.store = new Array(STORE_MAX_SIZE).fill('');
+        };
+
         const show = function() {
             const store = Array_List.store;
             page.querySelectorAll('.item_list .item').forEach(function(item, index) {
                 item.textContent = index + '：' + store[index];
             });
         };
+
         page.querySelector('.insert_button').addEventListener('click', function() {
             const input_data = page.querySelector('.input_data');
             if (input_data.value) {
@@ -94,8 +112,14 @@ document.addEventListener('init', function(event) {
                 }
             }
         });
+
+        reset();
         show();
     } else if (page.id === 'node_list_page') {
+        const reset = function() {
+            sequence = 0;
+            Node_List.head = new Node_List_Item(sequence, null, null);
+        };
         const show = function() {
             const list = page.querySelector('.item_list');
             list.innerHTML = '';
@@ -146,8 +170,13 @@ document.addEventListener('init', function(event) {
                 }
             }
         });
+        reset();
         show();
     } else if (page.id === 'sorted_list_page') {
+        const reset = function() {
+            Sorted_List.top = 0;
+            Sorted_List.store = new Array(STORE_MAX_SIZE).fill('');
+        };
         const show = function() {
             const store = Sorted_List.store;
             page.querySelectorAll('.item_list .item').forEach(function(item, index) {
@@ -186,9 +215,13 @@ document.addEventListener('init', function(event) {
                 }
             }
         });
+        reset();
         show();
     } else if (page.id === 'binary_search_tree_page') {
-        const show = () => {
+        const reset = function() {
+            Binary_Search_Tree.init();
+        };
+        const show = function() {
             let list;
             Binary_Search_Tree.initOrder();
 
@@ -210,8 +243,6 @@ document.addEventListener('init', function(event) {
             }
 
             list.push(Binary_Search_Tree.z);
-
-            console.log(list);
 
             const itemList = page.querySelector('.item_list');
 
@@ -265,13 +296,16 @@ document.addEventListener('init', function(event) {
             node.addEventListener('click', show);
         });
 
-        Binary_Search_Tree.init();
+        reset();
         show();
     } else if (page.id === 'heap_page') {
+        const reset = function() {
+            Heap.store = new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v));
+            Heap.size = 0;
+        };
         const show = function() {
             const store = Heap.store;
 
-            console.log(store);
             page.querySelectorAll('.item_list .item').forEach(function(item, index) {
                 item.textContent = index + '：' + store[index];
             });
@@ -307,11 +341,12 @@ document.addEventListener('init', function(event) {
             show();
         });
 
-        // 初期化処理
-        Heap.reset();
-
+        reset();
         show();
     } else if (page.id === 'hash_page') {
+        const reset = function() {
+            Hash.store = new Array(Hash.maxsize).fill('');
+        };
         const show = function() {
             const store = Hash.store;
 
@@ -342,12 +377,10 @@ document.addEventListener('init', function(event) {
             input_data.value = '';
         });
 
-        // 初期化処理
-        Hash.reset();
-
+        reset();
         show();
     } else if (page.id.match(/^.+_sort_page$/)) {
-        const sort_obj = {
+        const sort_obj_list = {
             bubble_sort_page: Bubble_Sort,
             selection_sort_page: Selection_Sort,
             insertion_sort_page: Insertion_Sort,
@@ -369,10 +402,13 @@ document.addEventListener('init', function(event) {
         let color = dataset.map(item => item.color);
         let plot = new Plot(page, data, color);
 
+        const sort_obj = sort_obj_list[page.id];
+
         page.querySelector('.start_button').addEventListener('click', function() {
             page.querySelector('.start_button').disabled = true;
             const speed = 100 - parseInt(page.querySelector('.speed_range').value);
-            const sorted_list = sort_obj[page.id].sort(dataset.slice(), plot, speed);
+            const sorted_list = sort_obj.sort(dataset.slice(), plot, speed);
+
             if (sorted_list) {
                 plot.update(sorted_list.dataset);
                 page.querySelector('.compare_count').textContent = sorted_list.compare_count;

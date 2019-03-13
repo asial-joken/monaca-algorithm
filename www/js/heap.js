@@ -3,11 +3,6 @@ const Heap = {
     maxsize: STORE_MAX_SIZE,
     store: new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v)),
     size: 0,
-    reset() {
-        console.log(this.store);
-        this.store = new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v));
-        this.size = 0;
-    },
     upheap(index) {
         const value = this.store[index];
 
