@@ -279,11 +279,24 @@ document.addEventListener('init', function(event) {
             }
         });
 
-        page.querySelector('.delete_button').addEventListener('click', function() {
+        page.querySelector('.delete_button').addEventListener('click', function(event) {
             const input_data = page.querySelector('.input_data');
 
             if (input_data.value) {
                 if (Binary_Search_Tree.delete(Number(input_data.value))) {
+                    show();
+                    input_data.value = '';
+                } else {
+                    ons.notification.alert(input_data.value + 'は見つかりませんでした');
+                }
+            }
+        });
+
+        page.querySelector('.delete_recursive_button').addEventListener('click', function(event) {
+            const input_data = page.querySelector('.input_data');
+
+            if (input_data.value) {
+                if (Binary_Search_Tree.delete(Number(input_data.value), true)) {
                     show();
                     input_data.value = '';
                 } else {

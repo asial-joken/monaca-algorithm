@@ -162,13 +162,17 @@ const Binary_Search_Tree = {
         return node;
     },
 
-    delete(key, isRecursion = false) {
-        const node = isRecursion ? this.BSTdeleteRecursive(key, this.root) : this.BSTdelete(key, this.root);
-
-        if (node === this.z) {
-            return false;
+    delete(key, isRecursive = false) {
+        let node;
+        if (isRecursive) {
+            return this.BSTdeleteRecursive(key, this.root);
         } else {
-            return true;
+            node = this.BSTdelete(key, this.root);
+            if (node === this.z) {
+                return false;
+            } else {
+                return true;
+            }
         }
     },
 
@@ -221,25 +225,46 @@ const Binary_Search_Tree = {
         return found;
     },
 
-    BSTdeleteRecursive(v, x) {
-        if (x === this.z) {
-            return this.z;
-        } else if (v !== x.key) {
-            if (v < x.key) {
-                x.left = this.BSTdeleteRecursive(v, x.left);
-            } else {
-                x.right = this.BSTdeleteRecursive(v, x.right);
-            }
+    findMax(node) {
+        if (node.right === this.z) {
+            return node.left;
         } else {
-            if (x.left === this.z) {
-                // x の代わりに, x の右部分木を置く
-                return x.right;
-            } else {
-                // TODO: 実装方法不明
-                // x の左部分木の最大のキーを持つ節 r を探す
-                // r のキーを x に代入し, 節 r の代わりに, r の左部分木を置く
-            }
+            return this.findMax(node.right);
         }
+    },
+
+    BSTdeleteRecursive(key, node) {
+        let notfound = false;
+
+        const del = (v, x) => {
+            if (x === this.z) {
+                notfound = true;
+                return this.z;
+            } else if (v !== x.key) {
+                if (v < x.key) {
+                    x.left = del(v, x.left);
+                } else {
+                    x.right = del(v, x.right);
+                }
+
+                return x;
+            } else {
+                if (x.left === this.z) {
+                    return x.right;
+                } else {
+                    alert(5);
+                    const r = this.findMax(x.left);
+                    r.left = x.left;
+                    r.right = x.right;
+
+                    return r;
+                }
+            }
+        };
+
+        del(key, node);
+
+        return !notfound;
     },
 
     RotR(node) {
