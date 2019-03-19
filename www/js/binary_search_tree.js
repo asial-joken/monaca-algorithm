@@ -1,4 +1,15 @@
 class Bnode {
+    static genHashCode(str) {
+        let hash = 0;
+
+        for (let i = 0; i < str.length; i++) {
+            hash += Math.pow(str.charCodeAt(i) * 31, str.length - i);
+            hash = hash & hash; // Convert to 16bit integer
+        }
+
+        return Number(hash).toString(16);
+    }
+
     /**
      * constructor
      * @param {Object} args
@@ -8,50 +19,17 @@ class Bnode {
      * @param {Bnode|undefined} args.right
      */
     constructor(args = {}) {
-        this.key = args.key;
+        Bnode.nodeCount++;
+
+        this.key = args.key || 0;
         this.info = args.info;
         this.left = args.left;
         this.right = args.right;
+        this.hashCode = Bnode.genHashCode(String(Date.now()) + Math.random());
     }
 
     toString() {
-        return `N: ${this.hashCode || ''}, K: ${this.key || ''}, L: ${this.left.hashCode || ''}, R: ${this.right.hashCode || ''}`;
-    }
-
-    get hashCode() {
-        const str = JSON.stringify(
-            this,
-            (() => {
-                const tmp = [];
-                return (key, value) => {
-                    if (key === '') {
-                        tmp.push(value);
-                        return value;
-                    }
-
-                    if (typeof value === 'object') {
-                        const item = tmp.find(item => value === item);
-
-                        if (item) return undefined;
-
-                        tmp.push(value);
-
-                        return value;
-                    }
-
-                    return value;
-                };
-            })()
-        );
-
-        let hash = 0;
-
-        for (let i = 0; i < str.length; i++) {
-            hash += Math.pow(str.charCodeAt(i) * 31, str.length - i);
-            hash = hash & hash; // Convert to 32bit integer
-        }
-
-        return hash;
+        return `N: ${String(this.hashCode) || ''}, K: ${String(this.key) || ''}, L: ${String(this.left.hashCode) || ''}, R: ${String(this.right.hashCode) || ''}`;
     }
 }
 
@@ -65,7 +43,8 @@ const Binary_Search_Tree = {
         this.order = '';
 
         this.z = new Bnode();
-        this.z.left = this.z.right = this.z;
+        this.z.left = this.z;
+        this.z.right = this.z;
 
         this.root = new Bnode({
             key: 0,
@@ -116,11 +95,19 @@ const Binary_Search_Tree = {
         return this.list;
     },
 
-    // 返り値が z なら見つからなかった.
     search(key) {
-        this.z.key = key;
+        const node = this.BSTsearch(key, this.root);
 
-        let node = this.root;
+        if (node === this.z) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+
+    // 返り値が z なら見つからなかった.
+    BSTsearch(key, node) {
+        this.z.key = key;
 
         do {
             if (key < node.key) {
@@ -131,15 +118,24 @@ const Binary_Search_Tree = {
         } while (key !== node.key);
 
         if (node === this.z) {
-            return false;
+            return this.z;
         } else {
-            return true;
+            return node;
         }
     },
 
     insert(key) {
+        const node = this.BSTinsert(key, this.root);
+
+        if (node != null) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    BSTinsert(key, node) {
         let parent;
-        let node = this.root;
 
         do {
             parent = node;
@@ -151,15 +147,11 @@ const Binary_Search_Tree = {
             }
         } while (node !== this.z);
 
-        console.log(parent);
-
         const newNode = new Bnode({
             key,
             left: this.z,
             right: this.z,
         });
-
-        console.log(newNode);
 
         if (key < parent.key) {
             parent.left = newNode;
@@ -167,19 +159,32 @@ const Binary_Search_Tree = {
             parent.right = newNode;
         }
 
-        return Boolean(node);
+        return node;
     },
 
-    delete(key) {
+    delete(key, isRecursion = false) {
+        const node = isRecursion ? this.BSTdeleteRecursive(key, this.root) : this.BSTdelete(key, this.root);
+
+        if (node === this.z) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+
+    BSTdelete(key, node) {
         let parent, child;
-        let node = this.root;
 
         this.z.key = key;
 
         do {
             parent = node;
 
-            node = key < node.key ? node.left : node.right;
+            if (key < node.key) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
         } while (key != node.key);
 
         if (node === this.z) return this.z;
@@ -213,7 +218,28 @@ const Binary_Search_Tree = {
             parent.right = node;
         }
 
-        return this.z !== found;
+        return found;
+    },
+
+    BSTdeleteRecursive(v, x) {
+        if (x === this.z) {
+            return this.z;
+        } else if (v !== x.key) {
+            if (v < x.key) {
+                x.left = this.BSTdeleteRecursive(v, x.left);
+            } else {
+                x.right = this.BSTdeleteRecursive(v, x.right);
+            }
+        } else {
+            if (x.left === this.z) {
+                // x の代わりに, x の右部分木を置く
+                return x.right;
+            } else {
+                // TODO: 実装方法不明
+                // x の左部分木の最大のキーを持つ節 r を探す
+                // r のキーを x に代入し, 節 r の代わりに, r の左部分木を置く
+            }
+        }
     },
 
     RotR(node) {

@@ -64,16 +64,14 @@ const Quick_Sort = {
         let swap_count = 0;
 
         const quickSort = function(data, l, r) {
-            console.log(`l:${l}, r:${r}, pivot:${data[r].data}`);
-
             if (r > l) {
                 const v = data[r].data;
                 let i = l;
-                let j = r - 1;
+                let j = r;
 
                 while (true) {
                     while (data[i].data < v) {
-                        i += 1;
+                        i++;
 
                         // 比較回数を更新
                         compare_count++;
@@ -82,8 +80,11 @@ const Quick_Sort = {
                             plot.compare_count_update(plot_compare);
                         }, speed * swap_count * 10 + compare_count * 10);
                     }
+
                     while (data[j].data > v) {
-                        j -= 1;
+                        if (j === 0) break;
+
+                        j--;
 
                         // 比較回数を更新
                         compare_count++;
@@ -95,11 +96,12 @@ const Quick_Sort = {
 
                     if (i >= j) break;
 
+                    // v, data[i].data, data[j].dataが同じ数字の場合無限ループに入るのでbreak
+                    if (v === data[i].data && v === data[j].data) break;
+
                     const tmp = data[i];
                     data[i] = data[j];
                     data[j] = tmp;
-
-                    console.log(`swap: ${i}, ${j}`);
 
                     // 交換回数を更新
                     swap_count++;

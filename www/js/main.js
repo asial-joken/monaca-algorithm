@@ -407,6 +407,8 @@ document.addEventListener('init', function(event) {
         page.querySelector('.start_button').addEventListener('click', function() {
             page.querySelector('.start_button').disabled = true;
             const speed = 100 - parseInt(page.querySelector('.speed_range').value);
+
+            console.log(dataset.slice().length, plot, speed);
             const sorted_list = sort_obj.sort(dataset.slice(), plot, speed);
 
             if (sorted_list) {
