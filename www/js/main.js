@@ -219,8 +219,10 @@ document.addEventListener('init', function(event) {
         show();
     } else if (page.id === 'binary_search_tree_page') {
         const reset = function() {
+            Bnode.nodeCount = 0;
             Binary_Search_Tree.init();
         };
+
         const show = function() {
             let list;
             Binary_Search_Tree.initOrder();

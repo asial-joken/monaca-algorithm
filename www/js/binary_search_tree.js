@@ -1,14 +1,5 @@
 class Bnode {
-    static genHashCode(str) {
-        let hash = 0;
-
-        for (let i = 0; i < str.length; i++) {
-            hash += Math.pow(str.charCodeAt(i) * 31, str.length - i);
-            hash = hash & hash; // Convert to 16bit integer
-        }
-
-        return Number(hash).toString(16);
-    }
+    static nodeCount = 0;
 
     /**
      * constructor
@@ -25,7 +16,7 @@ class Bnode {
         this.info = args.info;
         this.left = args.left;
         this.right = args.right;
-        this.hashCode = Bnode.genHashCode(String(Date.now()) + Math.random());
+        this.hashCode = `node-${Bnode.nodeCount}`;
     }
 
     toString() {
@@ -252,8 +243,8 @@ const Binary_Search_Tree = {
                 if (x.left === this.z) {
                     return x.right;
                 } else {
-                    alert(5);
                     const r = this.findMax(x.left);
+
                     r.left = x.left;
                     r.right = x.right;
 
