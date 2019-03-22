@@ -16,11 +16,11 @@ class Bnode {
         this.info = args.info;
         this.left = args.left;
         this.right = args.right;
-        this.hashCode = `node-${Bnode.nodeCount}`;
+        this.hashCode = Bnode.nodeCount;
     }
 
     toString() {
-        return `N: ${String(this.hashCode) || ''}, K: ${String(this.key) || ''}, L: ${String(this.left.hashCode) || ''}, R: ${String(this.right.hashCode) || ''}`;
+        return `Node: ${String(this.hashCode) || ''}, Key: ${String(this.key) || ''}, Left: ${String(this.left.hashCode) || ''}, Right: ${String(this.right.hashCode) || ''}`;
     }
 }
 
@@ -38,7 +38,7 @@ const Binary_Search_Tree = {
         this.z.right = this.z;
 
         this.root = new Bnode({
-            key: 0,
+            key: Number.MIN_VALUE,
             left: this.z,
             right: this.z,
         });
@@ -156,14 +156,15 @@ const Binary_Search_Tree = {
     delete(key, isRecursive = false) {
         let node;
         if (isRecursive) {
-            return this.BSTdeleteRecursive(key, this.root);
+            node = this.BSTdeleteRec(key, this.root);
         } else {
             node = this.BSTdelete(key, this.root);
-            if (node === this.z) {
-                return false;
-            } else {
-                return true;
-            }
+        }
+
+        if (node === this.z) {
+            return false;
+        } else {
+            return true;
         }
     },
 
@@ -218,44 +219,69 @@ const Binary_Search_Tree = {
 
     findMax(node) {
         if (node.right === this.z) {
-            return node.left;
+            return node;
         } else {
             return this.findMax(node.right);
         }
     },
 
-    BSTdeleteRecursive(key, node) {
-        let notfound = false;
+    parent(snode) {
+        let node = this.root;
+        let par;
+        const key = snode.key;
 
-        const del = (v, x) => {
-            if (x === this.z) {
-                notfound = true;
-                return this.z;
-            } else if (v !== x.key) {
-                if (v < x.key) {
-                    x.left = del(v, x.left);
-                } else {
-                    x.right = del(v, x.right);
-                }
+        do {
+            par = node;
 
-                return x;
+            if (key < node.key) {
+                node = node.left;
             } else {
-                if (x.left === this.z) {
-                    return x.right;
-                } else {
-                    const r = this.findMax(x.left);
-
-                    r.left = x.left;
-                    r.right = x.right;
-
-                    return r;
-                }
+                node = node.right;
             }
-        };
+        } while (node !== snode);
 
-        del(key, node);
+        return par;
+    },
 
-        return !notfound;
+    BSTdeleteRec(key, node) {
+        const z = this.z;
+
+        if (node === z) {
+            return z;
+        } else if (key !== node.key) {
+            if (key < node.key) {
+                return this.BSTdeleteRec(key, node.left);
+            } else {
+                return this.BSTdeleteRec(key, node.right);
+            }
+        } else if (node.right === z || node.left === z) {
+            const par = this.parent(node);
+            const notZ = node.right === z ? node.left : node.right;
+
+            console.log(`!Null ${notZ}`);
+
+            if (par.right == node) {
+                par.right = notZ;
+            } else {
+                par.left = notZ;
+            }
+
+            return node;
+        } else {
+            const max = this.findMax(node.left);
+            const parMax = this.parent(max);
+            const maxLeft = max.left;
+
+            node.key = max.key;
+
+            if (parMax.right === max) {
+                parMax.right = maxLeft;
+            } else {
+                parMax.left = maxLeft;
+            }
+
+            return node;
+        }
     },
 
     RotR(node) {

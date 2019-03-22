@@ -19,13 +19,13 @@ const Merge_Sort = {
                     copyLeft.push(data[i])
                 }
 
-                copyLeft.push(Number.MAX_SAFE_INTEGER)
+                copyLeft.push(Number.MAX_VALUE)
 
                 for (let j = mid + 1; j <= right; j++) {
                     copyRight.push(data[j])
                 }
 
-                copyRight.push(Number.MAX_SAFE_INTEGER)
+                copyRight.push(Number.MAX_VALUE)
 
                 let i = 0;
                 let j = 0;
@@ -65,13 +65,13 @@ const Merge_Sort = {
                     copyLeft.push(data[i]);
                 }
 
-                copyLeft.push({ data: Number.MAX_SAFE_INTEGER });
+                copyLeft.push({ data: Number.MAX_VALUE });
 
                 for (let j = mid + 1; j <= right; j++) {
                     copyRight.push(data[j]);
                 }
 
-                copyRight.push({ data: Number.MAX_SAFE_INTEGER });
+                copyRight.push({ data: Number.MAX_VALUE });
 
                 let i = 0;
                 let j = 0;

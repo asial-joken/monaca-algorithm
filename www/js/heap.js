@@ -1,7 +1,7 @@
 const Heap = {
-    notfound: Number.MIN_SAFE_INTEGER,
+    notfound: Number.MIN_VALUE,
     maxsize: STORE_MAX_SIZE,
-    store: new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_SAFE_INTEGER : v)),
+    store: new Array(STORE_MAX_SIZE + 1).fill(0).map((v, i) => (i === 0 ? Number.MAX_VALUE : v)),
     size: 0,
     upheap(index) {
         const value = this.store[index];
