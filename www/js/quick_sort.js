@@ -67,7 +67,7 @@ const Quick_Sort = {
             if (r > l) {
                 const v = data[r].data;
                 let i = l;
-                let j = r;
+                let j = r - 1;
 
                 while (true) {
                     while (data[i].data < v) {
@@ -81,7 +81,7 @@ const Quick_Sort = {
                         }, speed * swap_count * 10 + compare_count * 10);
                     }
 
-                    while (data[j].data > v) {
+                    while (data[j].data >= v) {
                         if (j === 0) break;
 
                         j--;
@@ -95,9 +95,6 @@ const Quick_Sort = {
                     }
 
                     if (i >= j) break;
-
-                    // v, data[i].data, data[j].dataが同じ数字の場合無限ループに入るのでbreak
-                    if (v === data[i].data && v === data[j].data) break;
 
                     const tmp = data[i];
                     data[i] = data[j];

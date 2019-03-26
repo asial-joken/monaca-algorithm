@@ -38,7 +38,7 @@ const Binary_Search_Tree = {
         this.z.right = this.z;
 
         this.root = new Bnode({
-            key: Number.MIN_VALUE,
+            key: Number.MIN_SAFE_INTEGER,
             left: this.z,
             right: this.z,
         });
