@@ -381,7 +381,7 @@ document.addEventListener('init', function(event) {
 
             if (!Number.isSafeInteger(skip)) skip = 1;
 
-            if (Hash.store.some(v => v === '') && !Hash.store.find(v => v === value) && Hash.insert(value, skip)) {
+            if (Hash.store.some(v => v === '') && Hash.insert(value, skip)) {
                 ons.notification.alert(`"${value}"を保存した`);
                 page.querySelector('.hash_value').innerText = Hash.hashFunc(value);
                 show();
