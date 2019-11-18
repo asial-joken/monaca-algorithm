@@ -1,6 +1,4 @@
 class Bnode {
-    static nodeCount = 0;
-
     /**
      * constructor
      * @param {Object} args
@@ -10,7 +8,11 @@ class Bnode {
      * @param {Bnode|undefined} args.right
      */
     constructor(args = {}) {
-        Bnode.nodeCount++;
+        if (Bnode.hasOwnProperty('nodeCount')) {
+            Bnode.nodeCount++;
+        } else {
+            Bnode.nodeCount = 0;
+        }
 
         this.key = args.key || 0;
         this.info = args.info;
