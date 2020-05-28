@@ -11,6 +11,7 @@ document.addEventListener('init', function(event) {
             page.querySelectorAll('.item_list .item').forEach(function(item, index) {
                 item.textContent = index + '：' + store[index];
             });
+            page.querySelector('.top').textContent = Stack.top;
         };
         page.querySelector('.input_button').addEventListener('click', function() {
             const input_data = page.querySelector('.input_data');
@@ -51,6 +52,9 @@ document.addEventListener('init', function(event) {
                     }
                 }
             });
+            page.querySelector('.front').textContent = Queue.front;
+            page.querySelector('.rear').textContent = Queue.rear;
+
         };
         page.querySelector('.input_button').addEventListener('click', function() {
             const input_data = page.querySelector('.input_data');

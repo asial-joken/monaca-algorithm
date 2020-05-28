@@ -14,7 +14,7 @@ const Stack = {
     pop: function() {
         if(!this.empty()) {
             this.store[this.top-1] = "";
-            this.top--;
+            this.top--;        
         } else {
             alert("データがありません");
         }
